@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Just Asking 😌</title>
+<title>Just Curious 😌</title>
 
 <style>
     body {
-        background: linear-gradient(135deg, #1d2671, #c33764);
+        background: linear-gradient(135deg, #141e30, #243b55);
         font-family: Arial, sans-serif;
         height: 100vh;
         margin: 0;
+        overflow: hidden;
         display: flex;
         justify-content: center;
         align-items: center;
-        overflow: hidden;
     }
 
     .card {
@@ -22,48 +22,52 @@
         width: 85%;
         max-width: 350px;
         padding: 30px 20px;
-        border-radius: 20px;
+        border-radius: 22px;
         text-align: center;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+        position: relative;
+        z-index: 10;
     }
 
     h1 {
-        color: #c33764;
+        color: #243b55;
         font-size: 22px;
         line-height: 1.4;
-        margin-bottom: 25px;
+        margin-bottom: 20px;
     }
 
     p {
-        color: #444;
+        color: #555;
         font-size: 15px;
         margin-bottom: 30px;
     }
 
     .buttons {
-        display: flex;
-        justify-content: space-around;
-        gap: 15px;
+        position: relative;
+        height: 140px;
     }
 
     button {
-        padding: 14px 24px;
+        padding: 14px 26px;
         font-size: 18px;
         border-radius: 30px;
         border: none;
         cursor: pointer;
-        width: 120px;
+        transition: all 0.25s ease;
     }
 
     #yes {
-        background-color: #c33764;
+        background-color: #243b55;
         color: white;
     }
 
     #no {
         background-color: #eee;
-        color: #aaa;
-        pointer-events: none; /* 😈 NO is disabled */
+        color: #999;
+        position: absolute;
+        left: 50%;
+        top: 70px;
+        transform: translateX(-50%);
     }
 </style>
 </head>
@@ -73,8 +77,8 @@
 <div class="card">
     <h1>Hey Aishwarya 👀</h1>
     <p>
-        Important question…<br>
-        Please think carefully 😌
+        Serious question.<br>
+        No overthinking allowed 😌
     </p>
 
     <h1>Can I stalk you?</h1>
@@ -86,6 +90,20 @@
 </div>
 
 <script>
+    const noBtn = document.getElementById("no");
+
+    function moveNo() {
+        const x = Math.random() * (window.innerWidth - 120);
+        const y = Math.random() * (window.innerHeight - 120);
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    }
+
+    // Mobile touch
+    noBtn.addEventListener("touchstart", moveNo);
+    // Desktop fallback
+    noBtn.addEventListener("mouseover", moveNo);
+
     function yesClicked() {
         document.body.innerHTML = `
         <div style="
@@ -101,8 +119,9 @@
         ">
             <h1 style="line-height:1.5;">
                 Too late 😈<br><br>
-                Permission granted automatically ✅<br><br>
-                FBI mode: ON 👀📱
+                You tried to say NO,<br>
+                but destiny said YES 😌<br><br>
+                Stalker mode: ACTIVATED 👀📱
             </h1>
         </div>
         `;
